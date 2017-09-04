@@ -5,6 +5,7 @@
 	
 	
 	require_once ROOT.'src/dao/masterDataDao.php';
+	require_once ROOT.'src/dao/sysprojectDao.php';
 	require_once ROOT.'src/dao/sysUserDao.php';
 	
 	require_once ROOT.'src/exceptions/loginException.php';
@@ -16,9 +17,12 @@
 	require_once ROOT.'src/models/sysTodo.php';
 	require_once ROOT.'src/models/sysTodosView.php';
 	require_once ROOT.'src/models/sysUser.php';
+	require_once ROOT.'src/models/sysUsersProjectsSw.php';
 	
+	require_once ROOT.'src/services/impl/sysProjectServiceImpl.php';
 	require_once ROOT.'src/services/impl/sysUserServiceImpl.php';
 	
+	require_once ROOT.'src/services/sysProjectService.php';
 	require_once ROOT.'src/services/sysUserService.php';
 	
 	require_once ROOT.'src/basicFunctions.php';

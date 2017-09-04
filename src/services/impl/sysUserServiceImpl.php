@@ -22,11 +22,23 @@
 			return self::$instance;
 		}
 		
-		public function validUser($usr, $psw) : bool {
+		public function validUser($usr, $psw, $projectCode) : bool {
 			$entity = self::$dao -> getUserByUsrName($usr, $psw);
-			if($entity -> getFelhasznaloNev() != null) {
+			if($entity -> getId() != null) {
 				if (!$entity -> isDeleted10()) {
-					return true;
+					$projctService = SysProjectServiceImpl::getInstance();
+					
+					$projectEntity = $projctService -> getProjectByCode($projectCode);
+					$jogosult = $projctService -> isJogosult($entity -> getId(), $projectEntity -> getId());
+					if($jogosult) {
+						$_SESSION['projectKod'] = $projectCode;
+						$_SESSION['usrName'] = $entity -> getId();
+						return true;
+					} else  {
+						throw new LogicException('Önnek nincs jogosultsága a(z) '.$projectEntity -> getElnevezes().' programhoz!');
+						
+					}
+					return false;
 				} else {
 					throw new LogicException("Inaktív felhasználó!");
 				}

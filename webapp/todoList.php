@@ -1,6 +1,6 @@
 <?php
-	include_once '../fejlec.php';
-	
+	require_once dirname(dirname(__FILE__)).'/src/allandok.php';
+
 	$tl = new TodoList();
 	
 	class TodoList {
@@ -93,6 +93,3 @@
 		</tbody>
 	</table>
 </body>
-		
-
-<?php include_once '../lablec.php'; ?>
