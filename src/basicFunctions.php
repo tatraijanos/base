@@ -1,7 +1,9 @@
 <?php
+	session_start();
+
 	require_once dirname(__FILE__).'/allandok.php';
 	
-	$bf = BasicFunctions::getInstance();
+	$basicFunctions = BasicFunctions::getInstance();
 
 	class BasicFunctions {
 		private static $instance;
@@ -21,13 +23,15 @@
 		}
 		
 		public function isJogosult() {
-			if(empty($_SESSION['projectKod'])) {
-				header("Location: ./index.php?errorCode=1");
+			if(empty($_SESSION['felhasznaloId']) || empty($_SESSION['projectKod'])) {
+				session_destroy();
+				return false;
 			}
+			return true;
 		}
 		
 		public function isEmpty($str) : bool {
-			if($str == null || $str == '') {
+			if($str == null || trim($str) == '') {
 				return true;
 			}
 			return false;

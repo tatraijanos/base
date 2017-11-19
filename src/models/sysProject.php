@@ -1,7 +1,7 @@
 <?php
 	require_once dirname(dirname(__FILE__)).'/allandok.php';
 	
-	class SysProject extends BasicModel{
+	class SysProject extends BasicModel {
 		public static $table_name = 'sys_projects';
 		public static $primary_key = 'id';
 		
@@ -25,6 +25,19 @@
 		}
 		public function setProgramVerzio($programVerzio) {
 			$this -> program_verzio= $programVerzio;
+		}
+		
+	}
+	
+	class SysProjectDao {
+		public static function getProjectByKod($kod) : SysProject {
+			$sysProject = SysProject::find_by_Kod($kod);
+			
+			if($sysProject == null) {
+				return new SysProject();
+			}
+			
+			return $sysProject;
 		}
 		
 	}

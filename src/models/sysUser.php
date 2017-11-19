@@ -42,4 +42,16 @@
 		}
 		
 	}
+	
+	class SysUserDao {
+		public static function getAzonositottUser($felhasznaloNev) : SysUser {
+			$sysUser = SysUser::find_by_felhasznalo_nev($felhasznaloNev);
+		
+			if($sysUser == null) {
+				return new SysUser();
+			}
+			
+			return $sysUser;
+		}
+	}
 ?>
